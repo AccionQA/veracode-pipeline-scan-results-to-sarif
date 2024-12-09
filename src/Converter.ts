@@ -249,13 +249,14 @@ export class Converter {
         let rules: Sarif.ReportingDescriptor[] = policyScanResult._embedded.findings
             .reduce((acc, val) => {
                 // dedupe by cwe_id
+                console.log('val', val)
                 if (!acc.map(value => value.finding_details.cwe.id).includes(val.finding_details.cwe.id)) {
                     acc.push(val);
                 }
                 return acc;
             }, <Finding[]>[])
             .map(issue => this.findingToRule(issue));
-
+        console.log("Inside convertPolicyScanResults function")
         // convert to SARIF json
         let sarifResults: Sarif.Result[] = policyScanResult._embedded.findings
             .map(findings => this.findingToResult(findings));

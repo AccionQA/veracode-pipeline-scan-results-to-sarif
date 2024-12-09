@@ -29143,12 +29143,14 @@ class Converter {
         let rules = policyScanResult._embedded.findings
             .reduce((acc, val) => {
             // dedupe by cwe_id
+            console.log('val', val);
             if (!acc.map(value => value.finding_details.cwe.id).includes(val.finding_details.cwe.id)) {
                 acc.push(val);
             }
             return acc;
         }, [])
             .map(issue => this.findingToRule(issue));
+        console.log("Inside convertPolicyScanResults function");
         // convert to SARIF json
         let sarifResults = policyScanResult._embedded.findings
             .map(findings => this.findingToResult(findings));
@@ -29659,6 +29661,7 @@ const mapVeracodeSeverityToCVSS = (severity) => {
 exports.mapVeracodeSeverityToCVSS = mapVeracodeSeverityToCVSS;
 const removeLeadingSlash = (str) => {
     // Check if the string starts with '/'
+    console.log('str', str);
     if (str.charAt(0) === '/') {
         // Remove the leading '/'
         return str.substring(1);
