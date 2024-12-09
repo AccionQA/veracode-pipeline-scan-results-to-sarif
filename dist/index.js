@@ -29629,6 +29629,7 @@ const getFilePath = (filePath, replacer) => {
             final = final.replace(element.regex, element.value);
         }
     });
+    console.log('getfilePath:', final);
     return final;
 };
 exports.getFilePath = getFilePath;
@@ -29662,7 +29663,7 @@ exports.mapVeracodeSeverityToCVSS = mapVeracodeSeverityToCVSS;
 const removeLeadingSlash = (str) => {
     // Check if the string starts with '/'
     console.log('str', str);
-    if (str.charAt(0) === '/') {
+    if ((str === null || str === void 0 ? void 0 : str.charAt(0)) === '/') {
         // Remove the leading '/'
         return str.substring(1);
     }

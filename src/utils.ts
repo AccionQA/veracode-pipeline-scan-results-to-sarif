@@ -59,6 +59,7 @@ export const getFilePath = (filePath: string, replacer: PathReplacer[]) => {
             final = final.replace(element.regex, element.value);
         }
     });
+    console.log('getfilePath:', final)
     return final;
 }
 
@@ -92,7 +93,7 @@ export const mapVeracodeSeverityToCVSS = (severity: number): string => {
 export const removeLeadingSlash = (str: string): string => {
     // Check if the string starts with '/'
     console.log('str', str)
-    if (str.charAt(0) === '/') {
+    if (str?.charAt(0) === '/') {
         // Remove the leading '/'
         return str.substring(1);
     }
